@@ -12,7 +12,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="v3.css">
-<script>document.documentElement.classList.add("js")</script>
+<link rel="stylesheet" href="v4.css">
+<script>(function(d){d.classList.add("js");var t;try{t=localStorage.getItem("cmux-theme")}catch(e){}d.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})(document.documentElement)</script>
 </head>
 <body>
 
@@ -36,6 +37,7 @@
       <a href="https://cmux.com/docs/getting-started">Docs</a>
     </nav>
     <div class="nav-cta">
+      <button type="button" class="theme-btn" id="theme"><svg class="sun" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="8" cy="8" r="2.8"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1"/></svg><svg class="moon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1Z"/></svg></button>
       <a class="btn btn-line btn-sm" href="https://github.com/manaflow-ai/cmux"><svg><use href="#i-gh"/></svg>GitHub<span class="count">28.8k</span></a>
       <a class="btn btn-ink btn-sm" href="https://cmux.com/download/confirmation?dl=1"><svg><use href="#i-apple"/></svg>Download</a>
     </div>
@@ -48,6 +50,7 @@
 </header>
 
 <main id="top">
+  <div class="hero-bg" id="hero-bg" aria-hidden="true"></div>
   <!-- 1. hero: the headline on the left, the pitch and the one call on the right -->
   <section class="hero wrap" data-hero>
     <a class="yc" href="https://www.ycombinator.com/companies/cmux" data-in><svg aria-hidden="true"><use href="#i-yc"/></svg><span>Backed by <b>Y Combinator</b></span></a>
@@ -133,19 +136,19 @@
         <div class="scenes">
           <article class="scene" id="f-tabs" style="--hue:var(--accent)">
             <div class="scene-pic" data-in><div class="v-tabs" id="v-tabs"><button type="button" class="vt" aria-pressed="true"><b>fix sidebar hover</b><i>Editing WorkspaceRow.swift</i><span class="vt-more"><span>fix/sidebar-hover · ~/cmux · :3000</span></span></button><button type="button" class="vt" aria-pressed="false"><b>api rate limits</b><i>Running the unit tests</i><span class="vt-more"><span>feat/rate-limit · ~/api · :8080</span></span></button><button type="button" class="vt" aria-pressed="false"><b>docs site</b><i>Idle</i><span class="vt-more"><span>main · ~/docs · :4321</span></span></button><button type="button" class="vt" aria-pressed="false"><b>release notes</b><i>Idle</i><span class="vt-more"><span>chore/changelog · ~/cmux</span></span></button><button type="button" class="vt" aria-pressed="false"><b>ios pairing</b><i>Idle</i><span class="vt-more"><span>feat/mobile-connect · ~/cmux-ios · :8081</span></span></button></div></div>
-            <div class="scene-txt" data-in><h3 class="h3">A tab for every agent, and you can read it</h3><div><p>The sidebar shows each workspace's git branch, working directory, ports, and the latest notification text. Tabs live in the sidebar instead of a cramped top bar, so it scales to dozens of concurrent sessions.</p><p class="try">Hover a tab to open it. Click to switch.</p></div></div>
+            <div class="scene-txt" data-in><h3 class="h3">A tab for every agent, and you can read it</h3><div><p>Each workspace shows its git branch, working directory, ports, and latest notification text.</p><p class="try">Hover a tab to open it. Click to switch.</p></div></div>
           </article>
           <article class="scene" id="f-rings" style="--hue:var(--violet)">
             <div class="scene-pic" data-in><div class="v-rings" id="v-rings"><div class="vr-grid"><button type="button" class="vr" aria-label="Pane 1"><span></span></button><button type="button" class="vr" aria-label="Pane 2"><span></span></button><button type="button" class="vr" aria-label="Pane 3"><span></span></button></div><div class="v-bar"><button type="button" class="keybtn"><span>Jump to latest unread</span><kbd>⌘⇧U</kbd></button><span class="v-say" role="status"></span></div></div></div>
-            <div class="scene-txt" data-in><h3 class="h3">It tells you the moment an agent needs you</h3><div><p>Panes light up when agents need attention, so you are not babysitting prompts. One shortcut moves you straight to the agent that needs a decision.</p><p class="try">Click a pane to make its agent ask. Then jump to it.</p></div></div>
+            <div class="scene-txt" data-in><h3 class="h3">It tells you the moment an agent needs you</h3><div><p>Panes light up when agents need attention. One shortcut jumps to the latest.</p><p class="try">Click a pane to make its agent ask. Then jump to it.</p></div></div>
           </article>
           <article class="scene" id="f-web" style="--hue:var(--cyan)">
             <div class="scene-pic" data-in><div class="v-web" id="v-web"><div class="vw-cmds"><button type="button" class="vw-cmd" data-do="navigate" aria-pressed="false">navigate</button><button type="button" class="vw-cmd" data-do="snapshot" aria-pressed="false">snapshot the DOM</button><button type="button" class="vw-cmd" data-do="click" aria-pressed="false">click</button><button type="button" class="vw-cmd" data-do="type" aria-pressed="false">type</button><button type="button" class="vw-cmd" data-do="eval" aria-pressed="false">evaluate JavaScript</button></div><div class="vw-page" data-state="blank"><div class="vw-url">localhost:3000</div><div class="vw-body"><b>Workspaces</b><span class="vw-field"></span><span class="vw-btn">New workspace</span></div><div class="vw-log" role="status">waiting for a command</div><i class="vw-cursor"></i></div></div></div>
-            <div class="scene-txt" data-in><h3 class="h3">Agents check their own web work</h3><div><p>Split a real browser pane next to your terminal. It is fully programmable: navigate, snapshot the DOM, click, type, evaluate JavaScript, and read console and network activity over the same socket API.</p><p class="try">Click a command to run it on the page.</p></div></div>
+            <div class="scene-txt" data-in><h3 class="h3">Agents check their own web work</h3><div><p>A real browser pane beside your terminal, scriptable over the same socket API.</p><p class="try">Click a command to run it on the page.</p></div></div>
           </article>
           <article class="scene" id="f-restore" style="--hue:var(--amber)">
             <div class="scene-pic" data-in><div class="v-restore" id="v-restore"><div class="vs-win"><div class="vs-pane" style="--k:0"><i></i><i></i><i></i></div><div class="vs-col"><div class="vs-pane" style="--k:1"><i></i><i></i><i></i></div><div class="vs-pane" style="--k:2"><i></i><i></i><i></i></div></div></div><div class="v-bar"><button type="button" class="keybtn"><span>Quit cmux</span><kbd>⌘Q</kbd></button><span class="v-say">Native Swift + AppKit on libghostty. No Electron.</span></div></div></div>
-            <div class="scene-txt" data-in><h3 class="h3">Quit. Restart. Carry on.</h3><div><p>cmux restores your windows, workspaces, panes, working directories, and scrollback when you relaunch, and the state survives a full computer restart. Agent sessions like Claude Code, Codex, and OpenCode come back too.</p><p class="try">Quit it. Then bring it back.</p></div></div>
+            <div class="scene-txt" data-in><h3 class="h3">Quit. Restart. Carry on.</h3><div><p>Windows, panes, working directories and scrollback come back, even after a full restart.</p><p class="try">Quit it. Then bring it back.</p></div></div>
           </article>
         </div>
       </div>
@@ -154,21 +157,18 @@
 
   <div class="rule"></div>
 
-  <!-- keyboard first -->
+  <!-- keyboard first: the keyboard runs side to side -->
   <section class="section" id="keys">
-    <div class="wrap keys">
-      <div>
-        <p class="eyebrow" data-in>Keyboard first</p>
-        <h2 class="h2" data-in>Every move has a key.</h2>
-        <p class="lede" data-in>Extensive shortcuts for workspaces, splits, browser, and more. Pick one, or press it. Every one can be changed in Settings or in cmux.json.</p>
-        <ul class="sc" id="sc" data-in></ul>
-        <a class="btn btn-ink" href="https://cmux.com/download/confirmation?dl=1" data-in><svg><use href="#i-apple"/></svg>Download for Mac</a>
-      </div>
-      <div data-in>
-        <div class="kb" id="kb" aria-hidden="true"></div>
-        <p class="kb-read" id="kb-read" role="status"></p>
-      </div>
+    <div class="wrap keys-head">
+      <p class="eyebrow" data-in>Keyboard first</p>
+      <h2 class="h2" data-in>Every move has a key.</h2>
+      <ul class="sc" id="sc" data-in></ul>
     </div>
+    <div class="kb-stage" data-in>
+      <div class="kb" id="kb" aria-hidden="true"></div>
+      <i class="kb-blur l"></i><i class="kb-blur r"></i><i class="kb-blur m"></i>
+    </div>
+    <p class="kb-read" id="kb-read" role="status"></p>
   </section>
 
   <div class="rule"></div>
@@ -187,19 +187,19 @@
           <span class="cell-n">Fig. 01 · the stack</span>
           <div class="fig"><span class="fig-tag r"></span><div data-fig="stack"></div><span class="fig-hint">hover a layer</span></div>
           <h3 class="h3">Built on libghostty, not a fork of Ghostty</h3>
-          <p>cmux uses libghostty as a library for terminal rendering, the same way apps use WebKit for web views. A native Swift + AppKit window sits on top, with no Electron, and your Ghostty themes, fonts and colors carry over.</p>
+          <p>cmux uses libghostty as a library, the way apps use WebKit. Native Swift + AppKit, no Electron.</p>
         </article>
         <article class="cell" id="how-rings">
           <span class="cell-n">Fig. 02 · the panes</span>
           <div class="fig"><span class="fig-tag r"></span><div data-fig="panes"></div><span class="fig-hint">hover a pane</span></div>
           <h3 class="h3">A ring when an agent needs you</h3>
-          <p>When a process needs attention, cmux rings the pane, badges the workspace in the sidebar, and sends a macOS notification. It fires on standard terminal escape sequences (OSC 9/99/777), or from the cmux CLI and agent hooks.</p>
+          <p>Rings fire on standard escape sequences (OSC 9/99/777), or from the CLI and agent hooks.</p>
         </article>
         <article class="cell" id="how-socket">
           <span class="cell-n">Fig. 03 · the socket</span>
           <div class="fig"><span class="fig-tag r"></span><div data-fig="socket"></div><span class="fig-hint">hover a caller</span></div>
           <h3 class="h3">Every action is a command</h3>
-          <p>Create workspaces, split panes, send input, read the screen, drive the browser. Every command is available through both the cmux CLI and a Unix socket, so agents can drive the terminal itself.</p>
+          <p>Every command is available through both the cmux CLI and a Unix socket.</p>
         </article>
         <div class="cell cell-wide">
           <div>
@@ -264,47 +264,53 @@
       <div class="head">
         <p class="eyebrow" data-in>Pricing</p>
         <h2 class="h2" data-in>The terminal is free. It always will be.</h2>
-        <p class="lede" data-in>Start free with your own keys, then add cloud capacity as your work grows.</p>
       </div>
-      <div class="plans">
+      <div class="plans-group">
+        <div class="plans-label" data-in><h3>For individuals</h3><p>Start free, then add cloud capacity as your work grows.</p></div>
+        <div class="plans">
         <article class="plan main" data-in>
           <h3>Free</h3>
           <p class="price">$0<small> /mo</small></p>
-          <p>The whole terminal, fully open source.</p>
-          <ul>
-            <li><svg><use href="#i-check"/></svg>Run Claude Code, Codex, Gemini, and any CLI agent with your own keys</li>
-            <li><svg><use href="#i-check"/></svg>Vertical tabs, workspaces, split panes, and completion notifications</li>
-            <li><svg><use href="#i-check"/></svg>Browser panels, a scriptable socket API, and custom skills</li>
-            <li><svg><use href="#i-check"/></svg>Community support on Discord and GitHub</li>
-          </ul>
           <a class="btn btn-ink" href="https://cmux.com/download/confirmation?dl=1"><svg><use href="#i-apple"/></svg>Download for Mac</a>
+          <p class="plus">Includes:</p>
+          <ul><li><svg><use href="#i-check"/></svg>Native macOS terminal built on Ghostty, fully open source</li><li><svg><use href="#i-check"/></svg>Run Claude Code, Codex, Gemini, and any CLI agent with your own keys</li><li><svg><use href="#i-check"/></svg>Vertical tabs, workspaces, split panes, and completion notifications</li><li><svg><use href="#i-check"/></svg>Browser panels, a scriptable socket API, and custom skills</li><li><svg><use href="#i-check"/></svg>Local session history</li><li><svg><use href="#i-check"/></svg>Community support on Discord and GitHub</li></ul>
         </article>
-        <article class="plan" data-in style="--i:1">
+        <article class="plan" data-in>
           <h3>Pro</h3>
           <p class="price">$50<small> /mo</small></p>
-          <p>Everything in Free, plus cloud agents.</p>
-          <ul>
-            <li><svg><use href="#i-check"/></svg>Cloud agents on Cloud VMs in isolated remote sandboxes</li>
-            <li><svg><use href="#i-check"/></svg>Up to 5 Cloud VMs sharing 20 vCPUs and 40 GB RAM</li>
-            <li><svg><use href="#i-check"/></svg>Unlimited workspaces</li>
-            <li><svg><use href="#i-check"/></svg>The cmux iOS app and email support</li>
-          </ul>
-          <a class="btn btn-line" href="https://cmux.com/pricing">Get Pro<svg class="arrow"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-line" href="https://cmux.com/pricing">Get Pro</a>
+          <p class="plus">Everything in Free, plus:</p>
+          <ul><li><svg><use href="#i-check"/></svg>Cloud agents on Cloud VMs in isolated remote sandboxes</li><li><svg><use href="#i-check"/></svg>Up to 5 Cloud VMs sharing 20 vCPUs and 40 GB RAM; one VM can use up to 16 GB RAM / 8 vCPU</li><li><svg><use href="#i-check"/></svg>Unlimited workspaces</li><li><svg><use href="#i-check"/></svg>The cmux iOS app and email support</li></ul>
         </article>
-        <article class="plan" data-in style="--i:2">
+        <article class="plan" data-in>
+          <h3>Max</h3>
+          <p class="price">$200<small> /mo</small></p>
+          <a class="btn btn-line" href="https://cmux.com/pricing">Get Max</a>
+          <p class="plus">Everything in Pro, plus:</p>
+          <ul><li><svg><use href="#i-check"/></svg>Up to 5 Cloud VMs sharing 80 vCPUs and 160 GB RAM</li><li><svg><use href="#i-check"/></svg>Unlocks 24 GB / 12 vCPU, 32 GB / 16 vCPU, and up to 64 GB / 32 vCPU</li><li><svg><use href="#i-check"/></svg>Unlimited workspaces and the iOS app</li></ul>
+        </article>
+        </div>
+      </div>
+      <div class="plans-group">
+        <div class="plans-label" data-in><h3>For teams and businesses</h3><p>Shared billing, administration, and controls for your organization.</p></div>
+        <div class="plans two">
+        <article class="plan" data-in>
           <h3>Team</h3>
           <p class="price">$60<small> /user/mo</small></p>
-          <p>Everything in Pro, for your whole team.</p>
-          <ul>
-            <li><svg><use href="#i-check"/></svg>Up to 5 Cloud VMs per paid seat</li>
-            <li><svg><use href="#i-check"/></svg>20 vCPUs and 40 GB RAM per paid seat, shared across the team</li>
-            <li><svg><use href="#i-check"/></svg>Centralized billing</li>
-            <li><svg><use href="#i-check"/></svg>Priority support</li>
-          </ul>
-          <a class="btn btn-line" href="https://cmux.com/pricing">Get Teams<svg class="arrow"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-line" href="https://cmux.com/pricing">Get Teams</a>
+          <p class="plus">Everything in Pro, plus:</p>
+          <ul><li><svg><use href="#i-check"/></svg>Up to 5 Cloud VMs per paid seat, sharing 20 vCPUs and 40 GB RAM per paid seat across the team</li><li><svg><use href="#i-check"/></svg>Centralized billing for your whole team</li><li><svg><use href="#i-check"/></svg>Priority support</li></ul>
         </article>
+        <article class="plan" data-in>
+          <h3>Enterprise</h3>
+          <p class="price">Custom<small></small></p>
+          <a class="btn btn-line" href="https://cmux.com/enterprise">Contact sales</a>
+          <p class="plus">Everything in Team, plus:</p>
+          <ul><li><svg><use href="#i-check"/></svg>Self-hosted Cloud execution and networking, so nothing leaves your network</li><li><svg><use href="#i-check"/></svg>SSO and SAML sign-in</li><li><svg><use href="#i-check"/></svg>Centralized admin and shared team rules</li><li><svg><use href="#i-check"/></svg>Audit logs for terminal sessions, network requests, and browser activity</li><li><svg><use href="#i-check"/></svg>Custom VM limits and volume pricing</li><li><svg><use href="#i-check"/></svg>SOC 2 and an SLA, with dedicated support</li></ul>
+        </article>
+        </div>
       </div>
-      <p class="plans-more">Need more? Max is $200/mo, and Enterprise adds self-hosted execution, SSO and audit logs. <a class="link" href="https://cmux.com/pricing">Compare every plan</a></p>
+      <p class="plans-more">Prices are monthly. Yearly billing is offered at checkout. <a class="link" href="https://cmux.com/pricing">Compare every feature</a></p>
     </div>
   </section>
 
@@ -361,12 +367,6 @@
           </div>
           <p class="hero-note">macOS today. More cmux builds are on the way.</p>
         </div>
-        <ul class="list" aria-label="What you get">
-          <li><b>free</b>The full terminal, with your own keys.</li>
-          <li><b>open</b>GPL licensed. Read the source on GitHub.</li>
-          <li><b>yours</b>Themes, fonts and colors come from your Ghostty config.</li>
-          <li><b>backed</b>Built by Manaflow, a Y Combinator S24 company.</li>
-        </ul>
       </div>
     </div>
   </section>
@@ -405,6 +405,7 @@
 <script src="features.js" defer></script>
 <script src="fx.js" defer></script>
 <script src="v3.js" defer></script>
+<script src="v4.js" defer></script>
 <script type="module" src="figures/stack.js"></script>
 <script type="module" src="figures/panes.js"></script>
 <script type="module" src="figures/socket.js"></script>

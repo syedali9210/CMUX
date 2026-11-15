@@ -189,3 +189,16 @@ The violet, cyan and amber of the second pass are gone (the variables still exis
 **Footer.** The logo and the name as a lockup (never the icon alone, never ghosted), three icon links, the link columns, a prompt line that reads out the link under the pointer as a command, and a grainy dawn in the icon's blues over a dark horizon. Grain is allowed here only. No pointer-following light.
 
 **Debt.** `v3.css` overrides rules in `styles.css` rather than replacing them. Once this direction is approved, fold it in and delete what it overrides (the field, aurora, swap, horizon and hue rules).
+
+## Fourth pass (2026-11-15): centre, air, light
+
+Syed: "i liked the centre align text for the hero", "the site is text heavy", "a bit more scroll space between the section", the keyboard "side to side of the site and in hairline illustartion" with "a bit of soft blur", "a good background interaction for the hero", pricing "accurate", "why the globe glow is getting cut… make it dynamic", "make light mode". Lives in `v4.css` and `v4.js`.
+
+- **Hero:** centred again. Behind it sits a cmux window of ten split panes in hairline; the pane under the pointer takes the ring, and left alone the ring moves from pane to pane. It is masked off behind the text.
+- **Air:** `--section` is now `clamp(120px, 15vw, 232px)`.
+- **Copy:** one sentence per feature scene and per drawing; the features lede, the grid's intro line and the closing card's list are gone.
+- **Keyboard:** the heading and shortcut pills sit in the column; the keyboard runs edge to edge, outlined keys only, tilted 38°, with soft blur at both edges and one slow band of blur passing over it.
+- **Pricing:** all five plans, in cmux's two groups, with every line as cmux.com/pricing lists it (read 2026-11-15). Buttons sit under the price so they share one line; cards in a row share a height.
+- **Footer:** the dawn is a layer behind the whole footer whose gradient ends inside its own box, so nothing is clipped. It drifts along the horizon on a 15s loop and rises as the footer scrolls in.
+- **Light theme:** `[data-theme="light"]` re-points the tokens (`--bg #fbfbfc`, `--fg #0b0c0f`, `--accent #3f61d6`, `--fg-3 #62656f`). It follows the system until the nav's switch is pressed, then remembers the choice. The product window and its notification stay dark in both themes. Text contrast is checked by script in both themes at seven widths.
+- New tokens: `--fill`, `--fill-line` (the quiet button fill and its inner hairline), so no component hard-codes white or black.

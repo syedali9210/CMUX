@@ -1,0 +1,104 @@
+/* cmux site, fourth pass: centred hero with a live pane grid, more air, less copy, an edge-to-edge hairline
+   keyboard, the real price list, a footer dawn that moves and is never cut, and a light theme. */
+@property --lx { syntax: "<percentage>"; inherits: true; initial-value: 50%; }
+:root { --fill: rgba(255, 255, 255, .07); --fill-line: rgba(255, 255, 255, .1); --section: clamp(120px, 15vw, 232px); }
+
+/* light theme: the same system on paper. The product window stays dark, as the app is. */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #fbfbfc; --bg-1: #f3f4f6; --bg-2: #eceef1; --bg-3: #e1e4e9; --line: #e3e5ea; --line-2: #cdd0d8;
+  --fg: #0b0c0f; --fg-2: #50535c; --fg-3: #62656f;
+  --accent: #3f61d6; --accent-ice: #2f47b0; --accent-deep: #2f47b0; --accent-tint: rgba(63, 97, 214, .1);
+  --ink: #0b0c0f; --ink-fg: #fbfbfc; --fill: rgba(11, 12, 15, .05); --fill-line: rgba(11, 12, 15, .11);
+  --hairline-plate: var(--bg); --hairline-edge: #2a2c33; --hairline-mid: #7b7e88; --hairline-lo: #b9bcc5;
+}
+.cmux, .toast { --bg: #07080a; --bg-1: #0d0e11; --bg-2: #14151a; --bg-3: #1d1f25; --line: #1c1d22; --line-2: #2d2f37; --fg: #f5f5f6; --fg-2: #a6a8af; --fg-3: #7f8189; --accent: #6b8bed; --accent-ice: #b4d6f0; --accent-deep: #2f47b0; color: #c9c9cf; }
+.toast { color: var(--fg); }
+[data-theme="light"] .cmux { box-shadow: 0 0 0 1px rgba(11, 12, 15, .5), 0 40px 90px -40px rgba(11, 12, 15, .45); }
+[data-theme="light"] :is(.brand, .foot-logo) img { box-shadow: 0 0 0 1px var(--line-2); }
+.vw-log { color: #b4d6f0; }
+.btn-line, .keybtn, .foot-social a { background: var(--fill); box-shadow: inset 0 0 0 1px var(--fill-line); }
+.btn-ink .count { color: color-mix(in srgb, var(--ink-fg) 55%, var(--ink)); }
+@media (hover: hover) and (pointer: fine) {
+  .btn-ink:hover { background: color-mix(in srgb, var(--ink) 86%, var(--bg)); }
+  .btn-line:hover, .foot-social a:hover { background: color-mix(in srgb, var(--fg) 12%, transparent); }
+}
+.theme-btn { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; color: var(--fg-2); background: var(--fill); box-shadow: inset 0 0 0 1px var(--fill-line); transition: color var(--d-ui) var(--ease-out), transform var(--d-ui) var(--ease-out); }
+.theme-btn:hover { color: var(--fg); } .theme-btn:active { transform: scale(.92); }
+.theme-btn svg { width: 16px; height: 16px; }
+.theme-btn .moon, [data-theme="light"] .theme-btn .sun { display: none; } [data-theme="light"] .theme-btn .moon { display: block; }
+@media (max-width: 760px) { .theme-btn { width: 40px; height: 40px; } }
+
+/* hero: centred again. Behind it, a window of split panes drawn in hairline: the one under the pointer rings. */
+.hero { display: block; text-align: center; padding-top: clamp(132px, 15vw, 204px); }
+.hero .yc { justify-self: auto; }
+.h1 { margin: var(--s-6) auto 0; font-size: clamp(2.1rem, .9rem + 6vw, 5.25rem); }
+.hero .lede { margin: var(--s-6) auto 0; max-width: 50ch; font-size: var(--t-18); text-wrap: balance; }
+.hero-cta { justify-content: center; margin-top: var(--s-6); }
+@media (max-width: 560px) { .hero-cta { align-items: center; } .hero-cta .btn { width: min(100%, 320px); } }
+.hero-bg { position: absolute; inset: 64px 0 auto 0; height: min(calc(100svh - 64px), 800px); z-index: -1; display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(6, 1fr); border-top: 1px solid var(--line);
+  -webkit-mask-image: radial-gradient(ellipse 52% 50% at 50% 46%, transparent 50%, #000 100%), linear-gradient(#000 58%, transparent); -webkit-mask-composite: source-in;
+  mask-image: radial-gradient(ellipse 52% 50% at 50% 46%, transparent 50%, #000 100%), linear-gradient(#000 58%, transparent); mask-composite: intersect; }
+.hp { position: relative; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background 520ms var(--ease-out); }
+.hp::before { content: ""; position: absolute; left: 14px; bottom: 16px; width: 26%; max-width: 90px; height: 1px; background: var(--line-2); box-shadow: 0 -9px 0 var(--line-2), 0 -18px 0 var(--line); }
+.hp::after { content: ""; position: absolute; inset: -1px 0 0 -1px; border: 1.5px solid var(--accent); opacity: 0; transition: opacity 420ms var(--ease-out); }
+.hp.ring { background: var(--accent-tint); } .hp.ring::after { opacity: 1; }
+@media (max-width: 760px) { .hero-bg { height: 580px; } .hp::before { display: none; } }
+
+/* less to read */
+#features .head .lede, .cell-head p[data-in]:not(.eyebrow):not(:has(a)) { display: none; }
+.wall { max-height: 580px; }
+.cta { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+.cta .h2 { max-width: 16ch; margin-inline: auto; } .cta .lede { margin-inline: auto; } .cta .hero-cta { justify-content: center; }
+.scene-txt { align-items: baseline; }
+
+/* keyboard: side to side, in hairline, tilted away, with soft blur at its edges and one slow blur passing over */
+.keys-head { display: grid; justify-items: center; text-align: center; }
+.keys-head .h2 { max-width: none; }
+.sc { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 900px; margin: var(--s-6) 0 0; }
+.sc button { width: auto; min-height: 40px; margin: 0; padding: 0 8px 0 16px; gap: 12px; border-radius: 999px; background: var(--fill); box-shadow: inset 0 0 0 1px var(--fill-line); }
+.sc button[aria-pressed="true"] { background: var(--accent-tint); box-shadow: inset 0 0 0 1px var(--accent); }
+.kb-stage { position: relative; margin-top: var(--s-7); padding-top: var(--s-4); overflow: hidden; perspective: 1500px; }
+.kb { gap: clamp(4px, .65vw, 10px); padding-inline: clamp(6px, 1.4vw, 24px); transform: rotateX(38deg); transform-origin: 50% 100%;
+  -webkit-mask-image: linear-gradient(transparent 2%, #000 46%); mask-image: linear-gradient(transparent 2%, #000 46%); }
+.kb-row { gap: clamp(4px, .65vw, 10px); }
+.key { height: clamp(28px, 5.6vw, 92px); border-radius: clamp(5px, .8vw, 13px); background: none; box-shadow: inset 0 0 0 1px var(--line-2); color: var(--fg-3); font-size: clamp(8px, 1.05vw, 15px); }
+.key.on { background: var(--accent-tint); box-shadow: inset 0 0 0 1.5px var(--accent); color: var(--accent-ice); transform: translateY(4px); }
+.kb-blur { position: absolute; top: 0; bottom: 0; width: 24%; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); pointer-events: none; }
+.kb-blur.l { left: 0; -webkit-mask-image: linear-gradient(90deg, #000 10%, transparent); mask-image: linear-gradient(90deg, #000 10%, transparent); }
+.kb-blur.r { right: 0; -webkit-mask-image: linear-gradient(270deg, #000 10%, transparent); mask-image: linear-gradient(270deg, #000 10%, transparent); }
+.kb-blur.m { left: 0; width: 20%; -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); -webkit-mask-image: linear-gradient(90deg, transparent, #000, transparent); mask-image: linear-gradient(90deg, transparent, #000, transparent); animation: sweep 11s linear infinite; }
+@keyframes sweep { from { transform: translateX(-100%); } to { transform: translateX(600%); } }
+.kb-read { margin-top: var(--s-5); }
+@media (max-width: 760px) { .kb { transform: rotateX(30deg); } .sc button { min-height: 44px; } }
+
+/* pricing: every plan cmux sells, in its two groups, with the buttons on one line */
+.plans-group + .plans-group { margin-top: var(--s-8); }
+.plans-label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin-bottom: var(--s-5); padding-bottom: var(--s-4); border-bottom: 1px solid var(--line); }
+.plans-label h3 { font: 500 var(--t-18)/1.3 var(--sans); } .plans-label p { font-size: var(--t-14); color: var(--fg-2); }
+.plans.two { grid-template-columns: repeat(2, 1fr); }
+.plan { padding: var(--s-6); }
+.plan h3 { color: var(--fg); font-size: var(--t-18); }
+.plan .price { margin: var(--s-5) 0; font-size: 2.75rem; line-height: 1; }
+.plan .btn { width: 100%; margin: 0 0 var(--s-6); }
+.plan > .plus { min-height: 0; margin-bottom: var(--s-4); font-size: var(--t-13); color: var(--fg-3); }
+.plan ul { margin: 0; gap: 12px; } .plan li { line-height: 1.45; }
+.plans-more { margin-top: var(--s-6); color: var(--fg-3); }
+@media (max-width: 900px) { .plans.two { grid-template-columns: 1fr; } }
+
+/* footer: the dawn sits behind the whole footer, fades out inside its own box, drifts along the horizon and rises as you arrive */
+.foot { position: relative; isolation: isolate; padding-bottom: clamp(210px, 27vw, 360px); --rise: 1; }
+.sky { position: absolute; inset: auto 0 0 0; z-index: -1; height: min(86%, 620px); margin: 0; overflow: hidden; }
+.sky-air { inset: 0; background: radial-gradient(ellipse 38% 82% at var(--lx) 100%, var(--accent-ice) 0%, var(--accent-ice) 16%, var(--accent) 40%, var(--accent-deep) 62%, transparent 100%);
+  opacity: calc(.25 + .75 * var(--rise)); transform: translateY(calc((1 - var(--rise)) * 22%)); animation: dawn 15s ease-in-out infinite alternate; }
+@keyframes dawn { from { --lx: 40%; } to { --lx: 60%; } }
+.sky-grain { -webkit-mask-image: radial-gradient(ellipse 60% 90% at 50% 100%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 60% 90% at 50% 100%, #000 55%, transparent 100%); }
+[data-theme="light"] .sky-grain { mix-blend-mode: soft-light; opacity: .7; }
+.planet { top: 70%; width: max(1800px, 200vw); box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-ice) 45%, transparent); }
+@media (max-width: 720px) { .sky { margin: 0; height: 46%; } .foot { padding-bottom: 240px; } }
+@media (prefers-reduced-motion: reduce) { .sky-air, .kb-blur.m { animation: none; } .kb-blur.m { display: none; } .hp, .hp::after { transition: none; } }
+
+/* after the look */
+.hp.ring { background: color-mix(in srgb, var(--accent) 5%, transparent); }
+.kb-stage { margin-top: var(--s-2); }
+.sky-air { background: radial-gradient(ellipse 38% 60% at var(--lx) 100%, var(--accent-ice) 0%, var(--accent-ice) 18%, var(--accent) 42%, var(--accent-deep) 64%, transparent 100%); }
