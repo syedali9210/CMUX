@@ -202,3 +202,13 @@ Syed: "i liked the centre align text for the hero", "the site is text heavy", "a
 - **Footer:** the dawn is a layer behind the whole footer whose gradient ends inside its own box, so nothing is clipped. It drifts along the horizon on a 15s loop and rises as the footer scrolls in.
 - **Light theme:** `[data-theme="light"]` re-points the tokens (`--bg #fbfbfc`, `--fg #0b0c0f`, `--accent #3f61d6`, `--fg-3 #62656f`). It follows the system until the nav's switch is pressed, then remembers the choice. The product window and its notification stay dark in both themes. Text contrast is checked by script in both themes at seven widths.
 - New tokens: `--fill`, `--fill-line` (the quiet button fill and its inner hairline), so no component hard-codes white or black.
+
+## Fifth pass (2026-11-15): room, tabs, a footer with a way up
+
+Lives in `v5.css` and `v5.js`.
+- **Space:** `--section` is `clamp(144px, 18vw, 288px)`. Inside a section: 96 from a heading block to its content, 96–168 between feature scenes, 48 of padding in cells and scene pictures, 24 between cards.
+- **Hero grid:** quieter. No fill; the pane under the pointer gets a 1px ring at 60%.
+- **Keyboard:** scaled to fit its stage (nothing clipped), tilted 30°. A fixed 9px blur lies over the outer 30% at each side and fades to the page. The moving blur is gone.
+- **Plan tabs** `.tabs`: "Individual" and "Team & Enterprise", the chosen one underlined, one panel shown at a time. Real tabs: arrow keys, Home and End move and select, one tab stop, each tab names its panel. The code box's tabs follow the same rules.
+- **Footer:** stars across the whole footer, the dawn hugging the horizon, and the cmux chevron turned upward with a fading trail. It is the "Back to top" link and rises as the footer scrolls in.
+- **Checked against the `ui-sdk` skill's rules** (vercel-labs/ui): every control has a name, text holds 4.5:1 in both themes, tabs are not hand-rolled without their keyboard model. Not met: the secondary button's hairline edge is under 3:1 by design (its label carries it). The site does not use the ui-sdk library itself; it has no build step.

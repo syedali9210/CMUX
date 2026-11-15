@@ -1,0 +1,58 @@
+/* cmux site, fifth pass: room to breathe, a quieter hero grid, a keyboard that fits with fixed blur at its sides,
+   plan tabs, and a footer with stars, a horizon and a way back up. */
+:root { --section: clamp(144px, 18vw, 288px); }
+
+/* air inside sections */
+.head { margin-bottom: var(--s-9); gap: var(--s-3); }
+.eyebrow { margin-bottom: var(--s-6); }
+.lede { margin-top: var(--s-6); }
+.stage { margin-top: clamp(64px, 8vw, 128px); }
+.trust { padding-top: var(--s-9); } .facts { margin-top: var(--s-9); } .agents { margin-top: var(--s-6); gap: 12px 36px; }
+.tour { gap: var(--s-9); }
+.scenes { gap: clamp(96px, 11vw, 168px); } .scene { gap: var(--s-6); } .scene-pic { padding: var(--s-7); min-height: 440px; }
+.cell { padding: var(--s-7); } .cell h3 { margin-bottom: var(--s-3); } .cell-wide { gap: var(--s-8); }
+.lead-quote { margin-bottom: var(--s-9); } .wall, .wall-col { gap: var(--s-5); } .q { padding: var(--s-6); }
+.plans { gap: var(--s-5); } .plan { padding: var(--s-7) var(--s-6); } .plan ul { gap: 14px; } .plans-more { margin-top: var(--s-7); }
+.log { gap: var(--s-7); } .log-head { margin-bottom: var(--s-8); } .log a { padding-top: var(--s-6); }
+.faq { gap: var(--s-9); } .faq summary { padding: 26px 0; }
+.cta { padding: clamp(48px, 8vw, 112px) var(--s-6); } .cta .hero-cta { margin-top: var(--s-7); }
+.hero .lede { margin-top: var(--s-7); } .hero-cta { margin-top: var(--s-7); } .hero-note { margin-top: var(--s-5); }
+.keys-head .sc { margin-top: var(--s-7); gap: 10px; }
+@media (max-width: 760px) { .scene-pic, .cell { padding: var(--s-5); min-height: 0; } .plan { padding: var(--s-6) var(--s-5); } .q { padding: var(--s-5); } .head { margin-bottom: var(--s-8); } }
+
+/* hero grid, quieter: no fill, a thin ring */
+.hp.ring { background: none; }
+.hp::after { border-width: 1px; } .hp.ring::after { opacity: .6; }
+.hp::before { opacity: .6; }
+
+/* keyboard: it fits now. A fixed blur lies over both ends, fading to the page. */
+.kb-stage { margin-top: var(--s-8); padding: var(--s-5) 0 clamp(36px, 6vw, 96px); }
+.kb { transform: rotateX(30deg) scale(.93); transform-origin: 50% 50%; -webkit-mask-image: linear-gradient(transparent, #000 38%); mask-image: linear-gradient(transparent, #000 38%); }
+.kb-blur.m { display: none; }
+.kb-blur { width: 30%; -webkit-backdrop-filter: blur(9px); backdrop-filter: blur(9px); }
+.kb-blur.l { background: linear-gradient(90deg, var(--bg) 4%, transparent 70%); -webkit-mask-image: linear-gradient(90deg, #000 35%, transparent); mask-image: linear-gradient(90deg, #000 35%, transparent); }
+.kb-blur.r { background: linear-gradient(270deg, var(--bg) 4%, transparent 70%); -webkit-mask-image: linear-gradient(270deg, #000 35%, transparent); mask-image: linear-gradient(270deg, #000 35%, transparent); }
+
+/* plan tabs: two words on a line, the chosen one underlined */
+.tabs { position: relative; display: inline-flex; gap: var(--s-6); margin-bottom: var(--s-7); border-bottom: 1px solid var(--line); }
+.tabs button { min-height: 44px; padding: 0 2px; font: 500 var(--t-16)/1 var(--sans); color: var(--fg-3); transition: color 200ms var(--ease-out); }
+.tabs button:hover { color: var(--fg-2); } .tabs button[aria-selected="true"] { color: var(--fg); }
+.tabs-line { position: absolute; left: 0; bottom: -1px; height: 2px; width: var(--w, 72px); background: var(--fg); transform: translateX(var(--x, 0px)); transition: transform 340ms var(--ease-out), width 340ms var(--ease-out); }
+.plans-group + .plans-group { margin-top: 0; }
+.plans-label { margin-bottom: var(--s-6); padding: 0; border: 0; } .plans-label h3 { display: none; } .plans-label p { font-size: var(--t-16); }
+
+/* footer: stars over the whole of it, the dawn hugging the horizon, and the cmux chevron turned upward as the way back to the top */
+.foot { padding-bottom: clamp(300px, 36vw, 500px); }
+.foot::before { content: ""; position: absolute; inset: 0; z-index: -2; opacity: .55; pointer-events: none; --s: color-mix(in srgb, var(--fg) 70%, transparent);
+  background-image: radial-gradient(1.2px 1.2px at 7% 14%, var(--s) 50%, transparent 52%), radial-gradient(1px 1px at 18% 62%, var(--s) 50%, transparent 52%), radial-gradient(1.4px 1.4px at 29% 31%, var(--s) 50%, transparent 52%), radial-gradient(1px 1px at 41% 9%, var(--s) 50%, transparent 52%), radial-gradient(1px 1px at 47% 47%, var(--s) 50%, transparent 52%), radial-gradient(1.3px 1.3px at 58% 22%, var(--s) 50%, transparent 52%), radial-gradient(1px 1px at 66% 55%, var(--s) 50%, transparent 52%), radial-gradient(1.2px 1.2px at 74% 12%, var(--s) 50%, transparent 52%), radial-gradient(1px 1px at 83% 38%, var(--s) 50%, transparent 52%), radial-gradient(1.4px 1.4px at 93% 20%, var(--s) 50%, transparent 52%), radial-gradient(1px 1px at 12% 40%, var(--s) 50%, transparent 52%), radial-gradient(1px 1px at 88% 66%, var(--s) 50%, transparent 52%);
+  -webkit-mask-image: linear-gradient(#000 55%, transparent 85%); mask-image: linear-gradient(#000 55%, transparent 85%); }
+.sky { height: min(64%, 560px); }
+.sky-air { background: radial-gradient(ellipse 42% 60% at var(--lx) 74%, var(--accent-ice) 0%, var(--accent-ice) 14%, var(--accent) 40%, var(--accent-deep) 64%, transparent 100%); }
+@keyframes dawn { from { --lx: 46%; } to { --lx: 54%; } }
+.sky-grain { -webkit-mask-image: radial-gradient(ellipse 52% 70% at 50% 74%, #000 50%, transparent 100%); mask-image: radial-gradient(ellipse 52% 70% at 50% 74%, #000 50%, transparent 100%); }
+.planet { top: 70%; }
+.sky-ship { position: absolute; left: 50%; bottom: 36%; width: 40px; height: 96px; margin-left: -20px; color: var(--fg); pointer-events: auto; border-radius: 12px; transform: translateY(calc((1 - var(--rise)) * 70px)); transition: transform 500ms var(--ease-out), color 200ms var(--ease-out); }
+.sky-ship:hover { transform: translateY(-10px); color: var(--accent-ice); }
+[data-theme="light"] .sky-ship { color: #fff; }
+@media (max-width: 720px) { .sky { height: 44%; } .foot { padding-bottom: 300px; } .sky-ship { bottom: 40%; transform: scale(.8); } }
+@media (prefers-reduced-motion: reduce) { .sky-ship, .tabs-line { transition: none; } }
