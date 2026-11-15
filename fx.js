@@ -150,12 +150,4 @@
     if (!document.fullscreenEnabled) fs.hidden = true;
     fs.addEventListener("click", () => (document.fullscreenElement ? document.exitFullscreen() : cm.requestFullscreen()));
   }
-  // the footer's horizon: its light follows the pointer along the rim
-  const foot = $(".foot");
-  if (foot) foot.addEventListener("pointermove", (e) => {
-    if (e.pointerType === "touch") return;
-    const r = $(".planet", foot).offsetWidth / 2, dx = e.clientX - innerWidth / 2;
-    foot.style.setProperty("--mx", e.clientX + "px");
-    foot.style.setProperty("--my", r - Math.sqrt(r * r - dx * dx) + "px");
-  }, { passive: true });
 })();

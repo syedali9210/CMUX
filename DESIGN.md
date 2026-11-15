@@ -212,3 +212,11 @@ Lives in `v5.css` and `v5.js`.
 - **Plan tabs** `.tabs`: "Individual" and "Team & Enterprise", the chosen one underlined, one panel shown at a time. Real tabs: arrow keys, Home and End move and select, one tab stop, each tab names its panel. The code box's tabs follow the same rules.
 - **Footer:** stars across the whole footer, the dawn hugging the horizon, and the cmux chevron turned upward with a fading trail. It is the "Back to top" link and rises as the footer scrolls in.
 - **Checked against the `ui-sdk` skill's rules** (vercel-labs/ui): every control has a name, text holds 4.5:1 in both themes, tabs are not hand-rolled without their keyboard model. Not met: the secondary button's hairline edge is under 3:1 by design (its label carries it). The site does not use the ui-sdk library itself; it has no build step.
+
+## Sixth pass (2026-11-15): split lines, a terminal footer, phones
+
+Lives in `v6.css` and `v6.js`. It replaces the fourth pass's pane grid and the fifth pass's footer.
+- **Hero interaction** `.split-bg`: two hairlines cross at the pointer, where a split would fall, with a small square at the crossing and the pane's size in terminal cells beside it. A click on empty hero space keeps that split (up to six). Left alone, the crossing drifts slowly. Reduced motion: it holds still and jumps to the pointer.
+- **Keyboard:** a lit key no longer shifts down, so its outline is never clipped. Each row has a blank key at both ends that takes the side blur, so real keys never sit under it.
+- **Footer:** no planet, glow, stars or arrow. A line of pitch with the two buttons; a prompt (`~/cmux ❯ ls`) over the links set as three directories in mono, each link gaining a `❯` on hover while the prompt reads `open …`; then "cmux" set very large, cropped by the bottom edge. It starts as an outline and fills letter by letter as it scrolls in. It is the back-to-top link.
+- **Phones** (after Linear and Raycast at 375px): section gap 104px, h2 28px; the hero's two buttons side by side; quotes, plans and changelog as rows that scroll sideways with the next card peeking (scroll-snap); the keyboard 720px wide, bleeding off both edges.

@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="v3.css">
 <link rel="stylesheet" href="v4.css">
 <link rel="stylesheet" href="v5.css">
+<link rel="stylesheet" href="v6.css">
 <script>(function(d){d.classList.add("js");var t;try{t=localStorage.getItem("cmux-theme")}catch(e){}d.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})(document.documentElement)</script>
 </head>
 <body>
@@ -51,7 +52,7 @@
 </header>
 
 <main id="top">
-  <div class="hero-bg" id="hero-bg" aria-hidden="true"></div>
+  <div class="split-bg" id="hero-split" aria-hidden="true"><i class="sx"></i><i class="sy"></i><b class="sh"></b><span class="sl"></span></div>
   <!-- 1. hero: the headline on the left, the pitch and the one call on the right -->
   <section class="hero wrap" data-hero>
     <a class="yc" href="https://www.ycombinator.com/companies/cmux" data-in><svg aria-hidden="true"><use href="#i-yc"/></svg><span>Backed by <b>Y Combinator</b></span></a>
@@ -379,27 +380,21 @@
 </main>
 
 <footer class="foot">
-  <div class="wrap foot-in">
-    <div class="foot-brand">
-      <a class="foot-logo" href="#top"><img src="https://cmux.com/logo.png" alt=""><span>cmux</span></a>
-      <p>The terminal built for multitasking, organization, and programmability.</p>
-      <div class="foot-social">
-        <a href="https://github.com/manaflow-ai/cmux" aria-label="cmux on GitHub"><svg><use href="#i-gh"/></svg></a>
-        <a href="https://www.ycombinator.com/companies/cmux" aria-label="cmux on Y Combinator"><svg><use href="#i-yc"/></svg></a>
-        <a href="mailto:founders@cmux.com" aria-label="Email the founders"><svg><use href="#i-mail"/></svg></a>
-      </div>
+  <div class="wrap foot-top">
+    <p>The terminal built for multitasking, organization, and programmability.</p>
+    <div>
+      <a class="btn btn-ink" href="https://cmux.com/download/confirmation?dl=1"><svg><use href="#i-apple"/></svg>Download for Mac</a>
+      <a class="btn btn-line" href="https://github.com/manaflow-ai/cmux"><svg><use href="#i-gh"/></svg>GitHub<span class="count">28.8k</span></a>
     </div>
-    <div><h4>Product</h4><ul>
-      <li><a href="https://cmux.com/docs/getting-started">Docs</a></li><li><a href="https://cmux.com/docs/changelog">Changelog</a></li><li><a href="https://cmux.com/pricing">Pricing</a></li><li><a href="https://cmux.com/ios">iOS companion</a></li></ul></div>
-    <div><h4>Developers</h4><ul>
-      <li><a href="https://github.com/manaflow-ai/cmux">GitHub</a></li><li><a href="https://cmux.com/docs/api">CLI reference</a></li><li><a href="https://cmux.com/docs/browser-automation">Browser automation</a></li><li><a href="https://github.com/manaflow-ai/cmux-skills">Skills</a></li></ul></div>
-    <div><h4>Company</h4><ul>
-      <li><a href="https://cmux.com/blog">Blog</a></li><li><a href="https://cmux.com/community">Community</a></li><li><a href="https://www.ycombinator.com/companies/cmux">Y Combinator</a></li><li><a href="mailto:founders@cmux.com">Contact</a></li></ul></div>
   </div>
-  <div class="wrap"><p class="foot-prompt" aria-hidden="true">~ <b>❯</b> <span id="foot-cmd">cmux</span><i class="caret"></i></p></div>
-  <div class="sky"><i class="sky-air" aria-hidden="true"></i><i class="sky-grain" aria-hidden="true"></i><i class="planet" aria-hidden="true"></i>
-    <a class="sky-ship" href="#top" aria-label="Back to top"><svg viewBox="0 0 40 96" aria-hidden="true"><defs><linearGradient id="trail" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs><path d="M8 26 20 8l12 18" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="18.5" y="14" width="3" height="78" rx="1.5" fill="url(#trail)"/></svg></a>
+  <div class="wrap foot-ls">
+    <p class="foot-prompt" aria-hidden="true">~/cmux <b>❯</b> <span id="foot-cmd">ls</span><i class="caret"></i></p>
+    <nav class="foot-cols" aria-label="Footer">
+      <div><h4>product/</h4><ul><li><a href="https://cmux.com/docs/getting-started">docs</a></li><li><a href="https://cmux.com/docs/changelog">changelog</a></li><li><a href="https://cmux.com/pricing">pricing</a></li><li><a href="https://cmux.com/ios">ios</a></li></ul></div><div><h4>developers/</h4><ul><li><a href="https://github.com/manaflow-ai/cmux">github</a></li><li><a href="https://cmux.com/docs/api">cli-reference</a></li><li><a href="https://cmux.com/docs/browser-automation">browser-automation</a></li><li><a href="https://github.com/manaflow-ai/cmux-skills">skills</a></li></ul></div><div><h4>company/</h4><ul><li><a href="https://cmux.com/blog">blog</a></li><li><a href="https://cmux.com/community">community</a></li><li><a href="https://www.ycombinator.com/companies/cmux">y-combinator</a></li><li><a href="mailto:founders@cmux.com">contact</a></li></ul></div>
+    </nav>
   </div>
+  <a class="foot-word" href="#top" aria-label="cmux, back to top" data-in><span style="--k:0">c</span><span style="--k:1">m</span><span style="--k:2">u</span><span style="--k:3">x</span></a>
+  <div class="wrap foot-base"><span>Built by Manaflow · Backed by Y Combinator</span><span>Free and open source · GPL</span></div>
 </footer>
 
 <div class="dock" id="dock">
@@ -415,6 +410,7 @@
 <script src="v3.js" defer></script>
 <script src="v4.js" defer></script>
 <script src="v5.js" defer></script>
+<script src="v6.js" defer></script>
 <script type="module" src="figures/stack.js"></script>
 <script type="module" src="figures/panes.js"></script>
 <script type="module" src="figures/socket.js"></script>

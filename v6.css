@@ -1,0 +1,56 @@
+/* cmux site, sixth pass: a split-line hero, a footer set as a terminal listing over a giant outlined wordmark,
+   keys that are never cut, and phone layouts in the manner of Linear and Raycast (carousels that peek, a keyboard that bleeds). */
+
+/* hero: two hairlines follow the pointer the way a split would fall. A click keeps the split. */
+.split-bg { position: absolute; inset: 64px 0 auto 0; height: min(calc(100svh - 64px), 820px); z-index: -1; overflow: hidden; --x: 62vw; --y: 300px;
+  -webkit-mask-image: linear-gradient(#000 72%, transparent); mask-image: linear-gradient(#000 72%, transparent); }
+.split-bg i, .cut { position: absolute; background: var(--line-2); }
+.sx, .cut.v { top: 0; bottom: 0; left: 0; width: 1px; } .sy, .cut.h { left: 0; right: 0; top: 0; height: 1px; }
+.sx { transform: translateX(var(--x)); } .sy { transform: translateY(var(--y)); }
+.sh { position: absolute; left: -4px; top: -4px; width: 9px; height: 9px; background: var(--bg); border: 1px solid var(--accent); transform: translate(var(--x), var(--y)); }
+.sl { position: absolute; left: 12px; top: 10px; font: 400 11px/1 var(--mono); color: var(--fg-3); white-space: nowrap; transform: translate(var(--x), var(--y)); }
+.cut { background: var(--line); animation: cut 900ms var(--ease-out); }
+@keyframes cut { from { background: var(--accent); } }
+
+/* keys: a lit key keeps its whole outline, and blank keys at each end take the blur so real ones never sit under it */
+.kb { padding-bottom: 8px; }
+.key.on { transform: none; }
+.kb-row::before, .kb-row::after { content: ""; flex: 2.6 1 0; border-radius: clamp(5px, .8vw, 13px); box-shadow: inset 0 0 0 1px var(--line-2); }
+.kb-blur { width: 16%; }
+
+/* footer: a terminal listing of the site, over the name set large in outline */
+.foot { padding: var(--s-9) 0 0; overflow: hidden; }
+.foot::before { display: none; }
+.foot-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s-5); padding-bottom: var(--s-7); border-bottom: 1px solid var(--line); }
+.foot-top p { max-width: 44ch; color: var(--fg-2); font-size: var(--t-18); line-height: 1.45; text-wrap: balance; }
+.foot-top div { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.foot-ls { padding-top: var(--s-7); }
+.foot-prompt { margin: 0 0 var(--s-6); font-size: var(--t-14); }
+.foot-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 220px)); gap: var(--s-6) var(--s-8); font: 400 var(--t-14)/1 var(--mono); }
+.foot-cols h4 { margin: 0 0 var(--s-4); font: 500 var(--t-14)/1 var(--mono); letter-spacing: 0; text-transform: none; color: var(--accent-ice); }
+.foot-cols li + li { margin-top: 14px; }
+.foot-cols a { color: var(--fg-2); transition: color 160ms var(--ease-out); } .foot-cols a:hover { color: var(--fg); }
+.foot-cols a::before { content: "❯ "; color: var(--accent); opacity: 0; transition: opacity 160ms var(--ease-out); } .foot-cols a:hover::before, .foot-cols a:focus-visible::before { opacity: 1; }
+.foot-word { display: flex; justify-content: center; height: .7em; margin-top: var(--s-9); overflow: hidden; font: 600 clamp(110px, 30vw, 500px)/.8 var(--sans); letter-spacing: -.06em; color: transparent; -webkit-text-stroke: 1px var(--line-2); user-select: none; }
+.foot-word span { transition: color 700ms var(--ease-out), -webkit-text-stroke-color 700ms var(--ease-out); transition-delay: calc(var(--k) * 110ms + 250ms); }
+.foot-word.in span { color: var(--fg); -webkit-text-stroke-color: var(--fg); }
+@media (hover: hover) and (pointer: fine) { .foot-word.in span:hover { color: var(--accent-ice); -webkit-text-stroke-color: var(--accent-ice); transition-duration: 160ms; transition-delay: 0s; } }
+.foot-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-3); padding-block: var(--s-5); border-top: 1px solid var(--line); font: 400 var(--t-12)/1.4 var(--mono); color: var(--fg-3); }
+
+/* phones: type on the left edge, cards in rows that peek, a keyboard wider than the screen */
+@media (max-width: 760px) {
+  :root { --section: 104px; }
+  .h2 { font-size: 1.75rem; } .head { margin-bottom: var(--s-7); }
+  .hero .hero-cta { flex-direction: row; flex-wrap: nowrap; max-width: 380px; margin-inline: auto; } .hero .hero-cta .btn { flex: 1 1 0; width: auto; padding: 0 10px; height: 44px; }
+  .split-bg { height: 560px; } .sl { display: none; }
+  .wall, .plans, .plans.two, .log { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; max-height: none; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); scrollbar-width: none; -webkit-mask-image: none; mask-image: none; }
+  .wall::-webkit-scrollbar, .plans::-webkit-scrollbar, .log::-webkit-scrollbar { display: none; }
+  .wall .wall-col:nth-child(n) { display: contents; }
+  .q { flex: 0 0 82%; scroll-snap-align: start; } .plan { flex: 0 0 86%; scroll-snap-align: start; }
+  .log { gap: 0; border-left: 0; border-top: 1px solid var(--line); } .log li { flex: 0 0 76%; scroll-snap-align: start; padding-right: var(--s-5); }
+  .log a { padding: var(--s-5) 0 0; } .log a::before { left: 0; top: -4px; }
+  .kb { min-width: 720px; margin-inline: calc(50% - 360px); transform: rotateX(26deg); } .key { height: 44px; font-size: 11px; border-radius: 8px; } .kb-blur { width: 22%; }
+  .foot-cols { grid-template-columns: 1fr 1fr; } .foot-top p { font-size: var(--t-16); } .foot { padding-bottom: 76px; }
+  .scenes { gap: var(--s-8); }
+}
+@media (prefers-reduced-motion: reduce) { .cut { animation: none; } .foot-word span { transition: none; } }

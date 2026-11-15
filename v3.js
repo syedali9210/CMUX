@@ -78,7 +78,7 @@
   /* 4. the footer's prompt reads out the link under the pointer, as a command */
   const cmd = $("#foot-cmd");
   if (cmd) {
-    const say = (a) => { cmd.textContent = a ? "open " + a.href.replace(/^https?:\/\/(www\.)?|^mailto:/, "").replace(/\/$/, "").replace(/\?.*/, "") : "cmux"; };
+    const say = (a) => { cmd.textContent = a ? "open " + a.href.replace(/^https?:\/\/(www\.)?|^mailto:/, "").replace(/\/$/, "").replace(/\?.*/, "") : "ls"; };
     $$(".foot a").forEach((a) => { a.addEventListener("pointerenter", () => say(a)); a.addEventListener("focus", () => say(a)); a.addEventListener("pointerleave", () => say()); a.addEventListener("blur", () => say()); });
   }
 })();
