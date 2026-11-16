@@ -34,7 +34,13 @@
     kb.innerHTML = ROWS.map((row) => `<div class="kb-row">${row.map((k) => { const [c, g] = k.split(":"); return `<span class="key" data-k="${c === '"' ? "&quot;" : c}"${g ? ` style="flex-grow:${g}"` : ""}>${c}</span>`; }).join("")}</div>`).join("");
     list.innerHTML = SHORTCUTS.map(([name, keys], i) => `<li><button type="button" data-i="${i}" aria-pressed="false">${name}<span>${keys.split(" ").map((k) => `<kbd>${k}</kbd>`).join("")}</span></button></li>`).join("");
     const keys = $$(".key", kb), btns = $$("button", list);
-    const light = (set) => { const seen = {}; keys.forEach((k) => { const c = k.dataset.k, hit = set.includes(c) && !seen[c]; if (hit) seen[c] = 1; k.classList.toggle("on", hit); }); };
+    const light = (set) => {
+      // of two keys with the same legend (⌘, ⇧, ⌥), light the one nearest the shortcut's own key, so the lit keys sit together
+      const cx = (k) => { const r = k.getBoundingClientRect(); return r.left + r.width / 2; };
+      const anchor = keys.find((k) => k.dataset.k === set[set.length - 1]);
+      const chosen = set.map((c) => keys.filter((k) => k.dataset.k === c).sort((a, b) => Math.abs(cx(a) - cx(anchor || a)) - Math.abs(cx(b) - cx(anchor || b)))[0]);
+      keys.forEach((k) => k.classList.toggle("on", chosen.includes(k)));
+    };
     let cur = -1, timer = 0, taken = false;
     const pick = (i) => {
       cur = i;

@@ -64,3 +64,32 @@
     mark.addEventListener("pointerleave", () => { mark.classList.remove("live"); mark.style.setProperty("--fx", "100%"); });
   }
 })();
+
+/* phones: the shortcut strip keeps the chosen shortcut in view, whether a tap or the cycle chose it */
+(() => {
+  const list = document.getElementById("sc");
+  if (!list) return;
+  const still = matchMedia("(prefers-reduced-motion: reduce)");
+  new MutationObserver(() => {
+    const on = list.querySelector('[aria-pressed="true"]');
+    if (!on || list.scrollWidth <= list.clientWidth) return;
+    const left = on.getBoundingClientRect().left - list.getBoundingClientRect().left + list.scrollLeft - parseFloat(getComputedStyle(list).paddingLeft);
+    list.scrollTo({ left, behavior: still.matches ? "auto" : "smooth" });
+  }).observe(list, { attributes: true, attributeFilter: ["aria-pressed"], subtree: true });
+})();
+
+/* phones: when the keyboard is wider than the screen, slide it so the lit keys sit in the middle */
+(() => {
+  const kb = document.getElementById("kb"), stage = kb && kb.parentElement;
+  if (!kb) return;
+  let pan = 0;
+  const centre = () => {
+    const lit = [...kb.querySelectorAll(".key.on")], room = (kb.offsetWidth - stage.clientWidth) / 2;
+    if (room <= 0 || !lit.length) { pan = 0; kb.style.removeProperty("--pan"); return; }
+    const xs = lit.map((k) => { const r = k.getBoundingClientRect(); return (r.left + r.right) / 2; });
+    pan = Math.max(-room, Math.min(room, pan + stage.clientWidth / 2 - (Math.min(...xs) + Math.max(...xs)) / 2));
+    kb.style.setProperty("--pan", pan.toFixed(1) + "px");
+  };
+  new MutationObserver(() => requestAnimationFrame(centre)).observe(kb, { attributes: true, attributeFilter: ["class"], subtree: true });
+  addEventListener("resize", centre);
+})();
