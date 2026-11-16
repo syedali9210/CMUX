@@ -123,7 +123,7 @@
     addEventListener("keydown", (e) => { if (e.key === "Escape") shut(); });
   }
   // the bar at the foot of a phone: there once the hero's buttons have gone, gone again at the closing call
-  const dock = $("#dock"), heroCta = $(".hero .hero-cta"), endCta = $(".cta");
+  const dock = $("#dock"), heroCta = $(".hero .hero-cta"), endCta = $(".foot-top");
   if (dock) {
     const state = { hero: true, end: false };
     const io = new IntersectionObserver((es) => {

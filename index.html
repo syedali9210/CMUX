@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="v4.css">
 <link rel="stylesheet" href="v5.css">
 <link rel="stylesheet" href="v6.css">
+<link rel="stylesheet" href="v7.css">
 <script>(function(d){d.classList.add("js");var t;try{t=localStorage.getItem("cmux-theme")}catch(e){}d.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})(document.documentElement)</script>
 </head>
 <body>
@@ -52,7 +53,7 @@
 </header>
 
 <main id="top">
-  <div class="split-bg" id="hero-split" aria-hidden="true"><i class="sx"></i><i class="sy"></i><b class="sh"></b><span class="sl"></span></div>
+  <canvas class="cells" id="hero-cells" aria-hidden="true"></canvas>
   <!-- 1. hero: the headline on the left, the pitch and the one call on the right -->
   <section class="hero wrap" data-hero>
     <a class="yc" href="https://www.ycombinator.com/companies/cmux" data-in><svg aria-hidden="true"><use href="#i-yc"/></svg><span>Backed by <b>Y Combinator</b></span></a>
@@ -116,12 +117,6 @@
     <p class="eyebrow" data-in>Works with every agent that runs in a terminal</p>
     <ul class="agents" data-in>
       <li>Claude Code</li><li>Codex</li><li>OpenCode</li><li>Gemini CLI</li><li>Kiro</li><li>Aider</li><li>Goose</li><li>Amp</li><li>Cline</li><li>Cursor Agent</li>
-    </ul>
-    <ul class="facts">
-      <li data-in style="--i:0"><b>28.8k</b><span>stars on GitHub</span></li>
-      <li data-in style="--i:1"><b>YC S24</b><span>backed by Y Combinator</span></li>
-      <li data-in style="--i:2"><b>GPL</b><span>free and open source</span></li>
-      <li data-in style="--i:3"><b>0 Electron</b><span>native Swift + AppKit</span></li>
     </ul>
   </section>
 
@@ -360,23 +355,6 @@
       </div>
     </div>
   </section>
-
-  <!-- 8. the last call -->
-  <section class="section" style="padding-top:0">
-    <div class="wrap">
-      <div class="cta" data-in>
-        <div>
-          <h2 class="h2">Your agents are waiting on you.</h2>
-          <p class="lede">Download cmux and open your first workspace. It takes a minute, and it's free.</p>
-          <div class="hero-cta">
-            <a class="btn btn-ink" href="https://cmux.com/download/confirmation?dl=1"><svg><use href="#i-apple"/></svg>Download for Mac</a>
-            <a class="btn btn-line" href="https://cmux.com/docs/getting-started">Read the docs<svg class="arrow"><use href="#i-arrow"/></svg></a>
-          </div>
-          <p class="hero-note">macOS today. More cmux builds are on the way.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="foot">
@@ -392,8 +370,15 @@
     <nav class="foot-cols" aria-label="Footer">
       <div><h4>product/</h4><ul><li><a href="https://cmux.com/docs/getting-started">docs</a></li><li><a href="https://cmux.com/docs/changelog">changelog</a></li><li><a href="https://cmux.com/pricing">pricing</a></li><li><a href="https://cmux.com/ios">ios</a></li></ul></div><div><h4>developers/</h4><ul><li><a href="https://github.com/manaflow-ai/cmux">github</a></li><li><a href="https://cmux.com/docs/api">cli-reference</a></li><li><a href="https://cmux.com/docs/browser-automation">browser-automation</a></li><li><a href="https://github.com/manaflow-ai/cmux-skills">skills</a></li></ul></div><div><h4>company/</h4><ul><li><a href="https://cmux.com/blog">blog</a></li><li><a href="https://cmux.com/community">community</a></li><li><a href="https://www.ycombinator.com/companies/cmux">y-combinator</a></li><li><a href="mailto:founders@cmux.com">contact</a></li></ul></div>
     </nav>
+    <dl class="foot-info">
+      <dt>latest</dt><dd><a href="https://cmux.com/docs/changelog/0.65.2.2">0.65.2.2</a> · October 27, 2026</dd>
+      <dt>platform</dt><dd>macOS</dd>
+      <dt>engine</dt><dd>libghostty</dd>
+      <dt>license</dt><dd>GPL, free to use</dd>
+      <dt>backed by</dt><dd>Y Combinator, S24</dd>
+    </dl>
   </div>
-  <a class="foot-word" href="#top" aria-label="cmux, back to top" data-in><span style="--k:0">c</span><span style="--k:1">m</span><span style="--k:2">u</span><span style="--k:3">x</span></a>
+  <a class="foot-mark" href="#top" aria-label="cmux, back to top" data-in><span class="fm-o" aria-hidden="true">cmux</span><span class="fm-f" aria-hidden="true">cmux</span></a>
   <div class="wrap foot-base"><span>Built by Manaflow · Backed by Y Combinator</span><span>Free and open source · GPL</span></div>
 </footer>
 
@@ -411,6 +396,7 @@
 <script src="v4.js" defer></script>
 <script src="v5.js" defer></script>
 <script src="v6.js" defer></script>
+<script src="v7.js" defer></script>
 <script type="module" src="figures/stack.js"></script>
 <script type="module" src="figures/panes.js"></script>
 <script type="module" src="figures/socket.js"></script>

@@ -220,3 +220,11 @@ Lives in `v6.css` and `v6.js`. It replaces the fourth pass's pane grid and the f
 - **Keyboard:** a lit key no longer shifts down, so its outline is never clipped. Each row has a blank key at both ends that takes the side blur, so real keys never sit under it.
 - **Footer:** no planet, glow, stars or arrow. A line of pitch with the two buttons; a prompt (`~/cmux ❯ ls`) over the links set as three directories in mono, each link gaining a `❯` on hover while the prompt reads `open …`; then "cmux" set very large, cropped by the bottom edge. It starts as an outline and fills letter by letter as it scrolls in. It is the back-to-top link.
 - **Phones** (after Linear and Raycast at 375px): section gap 104px, h2 28px; the hero's two buttons side by side; quotes, plans and changelog as rows that scroll sideways with the next card peeking (scroll-snap); the keyboard 720px wide, bleeding off both edges.
+
+## Seventh pass (2026-11-16): cells, fewer sections, a fuller footer
+
+Lives in `v7.css` and `v7.js`.
+- **Hero background** `#hero-cells`: replaces the split lines, which did not belong to the hero. A grid of 26px terminal cells, empty at rest. A cell lights in the accent when the pointer passes and fades behind it, so the pointer writes a short trail in the same block shape and colour as the headline's caret. Left alone, a single cell blinks at the sides now and then. It is dimmed behind the text, drawn on a canvas only while cells are lit, and does nothing under reduced motion except light the cells under the pointer.
+- **Removed:** the four-fact row under the agents list (it repeated the hero and the footer) and the closing call-to-action card (the footer's first row is the same pitch and buttons).
+- **Footer:** a status block beside the listing (latest release, platform, engine, licence, backer). The large name is now an outline with a grainy fill over it: the fill wipes in from the left when the footer arrives, follows the pointer across the word, and fills whole again when the pointer leaves.
+- The awwwards MCP server did not connect this session, so the section-loop skill was applied by hand: pass conditions written first, then measured in headless Edge.
